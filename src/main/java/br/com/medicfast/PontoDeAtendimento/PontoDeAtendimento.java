@@ -12,25 +12,25 @@ import java.util.List;
 public class PontoDeAtendimento extends EntidadeBase implements Serializable {
 
     @Column
-    public  String nome;
+    private  String nome;
 
     @Column
-    public  String rua;
+    private  String rua;
 
     @Column
-    public  int numero;
+    private  int numero;
 
     @Column
-    public  String cidade;
+    private  String cidade;
 
     @Column
-    public  String uf;
+    private  String uf;
 
     @Column
-    public  String telefone;
+    private  String telefone;
 
     @OneToMany
-    public Collection<Medico> medicos;
+    private Collection<Medico> medicos;
 
     public PontoDeAtendimento(String nome, String rua, int numero, String cidade, String uf, String telefone) {
         this.nome = nome;
@@ -42,14 +42,47 @@ public class PontoDeAtendimento extends EntidadeBase implements Serializable {
 
     }
 
-
     public PontoDeAtendimento() {
     }
 
-    public void setMedicos(Collection<Medico> medicos) {
+    public void adicionarMedicos(Collection<Medico> medicos) {
         this.medicos = medicos;
     }
 
+    public  void alterar(String nome){
+        this.nome = nome;
+    }
+
+    public void alterarEndereco(String rua, int numero, String cidade, String uf){
+        this.rua = rua;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.uf = uf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
 
     public Collection<Medico> getMedicos() {
         return medicos;

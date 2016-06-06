@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
+import javax.persistence.OneToOne;
+import java.sql.Time;
 import java.util.Collection;
 
 import static org.junit.Assert.assertNotNull;
@@ -46,13 +48,13 @@ public class SenhaTeste extends AbstractTransactionalJUnit4SpringContextTests {
 
     private void salvarUmaSenha(){
         salvarUmPontoDeAtedimento();
-        senha = new Senha();
-        senha.pontoDeAtendimento = pontoDeAtendimento;
-        senha.ocorrencia = Ocorrencia.SUSPEITA_DE_DENGUE;
-        senha.horarioDeAtendimento = Horario.deAtendimentoPara(senha.getOcorrencia());
+
+        Time horarioPrevistoParaOAtendimento = Horario.deAtendimentoPara(Ocorrencia.SUSPEITA_DE_DENGUE);
+        senha = new Senha(pontoDeAtendimento,Ocorrencia.SUSPEITA_DE_DENGUE,horarioPrevistoParaOAtendimento);
+
 
         senhaRepository.salvar(senha);
-        senha.numero = senha.getId();
+        senha.setNumero(senha.getId());
     }
 
     private void salvarUmPontoDeAtedimento(){

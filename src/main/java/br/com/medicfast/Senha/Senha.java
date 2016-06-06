@@ -4,10 +4,10 @@ import br.com.medicfast.EntidadeBase.EntidadeBase;
 import br.com.medicfast.Ocorrencia.Ocorrencia;
 import br.com.medicfast.PontoDeAtendimento.PontoDeAtendimento;
 import br.com.medicfast.Utils.Horario;
+import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.annotation.Generated;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 
@@ -15,16 +15,29 @@ import java.sql.Time;
 public class Senha extends EntidadeBase implements Serializable {
 
     @Column
-    public Integer numero;
+    private Integer numero;
 
     @OneToOne
-    public PontoDeAtendimento pontoDeAtendimento;
+    private PontoDeAtendimento pontoDeAtendimento;
 
     @Column
-    public Ocorrencia ocorrencia;
+    private Ocorrencia ocorrencia;
 
     @Column
-    public Time horarioDeAtendimento;
+    private Time horarioDeAtendimento;
+
+    public Senha() {
+    }
+
+    public Senha(PontoDeAtendimento pontoDeAtendimento, Ocorrencia ocorrencia, Time horarioDeAtendimento) {
+        this.pontoDeAtendimento = pontoDeAtendimento;
+        this.ocorrencia = ocorrencia;
+        this.horarioDeAtendimento = horarioDeAtendimento;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
 
     public Integer getNumero() {
         return numero;

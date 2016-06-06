@@ -32,4 +32,14 @@ public class PontoDeAtendimentoDAO implements  PontoDeAtendimentoRepository{
     public Collection<PontoDeAtendimento> buscarTodos() {
         return entityManager.createQuery("from PontoDeAtendimento p").getResultList();
     }
+
+    @Override
+    public void remover(PontoDeAtendimento pontoDeAtendimento) {
+        this.entityManager.remove(entityManager.getReference(PontoDeAtendimento.class, pontoDeAtendimento.getId()));
+    }
+
+    @Override
+    public PontoDeAtendimento buscarPor(Integer id) {
+        return entityManager.find(PontoDeAtendimento.class,id);
+    }
 }

@@ -4,18 +4,38 @@ import br.com.medicfast.EntidadeBase.EntidadeBase;
 import br.com.medicfast.Especialidade.Especialidade;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 public class Medico extends  EntidadeBase  implements Serializable {
-    public String nome;
-    public String crm;
-    public String telefone;
+    private String nome;
+    private String crm;
+    private String telefone;
 
-    @OneToMany
-    public List<Especialidade> especialidade;
+    @ManyToMany
+    private List<Especialidade> especialidade;
+
+    public Medico() {
+    }
+
+    public Medico(String nome, String crm, String telefone, List<Especialidade> especialidade) {
+        this.nome = nome;
+        this.crm = crm;
+        this.telefone = telefone;
+        this.especialidade = especialidade;
+    }
+
+    public void alterar(String nome, String crm, String telefone){
+        this.nome = nome;
+        this.crm = crm;
+        this.telefone = telefone;
+    }
+
+    public void adicionarEspecialidade(List<Especialidade> especialidade) {
+        this.especialidade = especialidade;
+    }
 
     public String getNome() {
         return nome;
