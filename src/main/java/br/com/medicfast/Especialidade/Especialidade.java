@@ -17,4 +17,12 @@ public class Especialidade extends EntidadeBase implements Serializable {
     public Especialidade(String nome) {
         this.nome = nome;
     }
+
+    public void alterar(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }

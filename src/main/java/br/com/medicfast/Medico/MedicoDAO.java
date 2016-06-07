@@ -26,8 +26,8 @@ public class MedicoDAO implements MedicoRepository {
     }
 
     @Override
-    public void remover(Medico medico) {
-        this.entityManager.remove(entityManager.getReference(Medico.class, medico.getId()));
+    public void remover(Integer id) {
+        this.entityManager.remove(entityManager.getReference(Medico.class, id));
     }
 
     @Override

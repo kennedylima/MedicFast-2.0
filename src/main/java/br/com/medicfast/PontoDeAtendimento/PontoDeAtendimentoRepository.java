@@ -7,7 +7,7 @@ public interface PontoDeAtendimentoRepository {
 
     Collection<PontoDeAtendimento> buscarTodos();
 
-    void remover(PontoDeAtendimento pontoDeAtendimento);
+    void remover(Integer id);
 
     PontoDeAtendimento buscarPor(Integer id);
 }

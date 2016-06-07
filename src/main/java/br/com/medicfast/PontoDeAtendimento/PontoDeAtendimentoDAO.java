@@ -34,8 +34,8 @@ public class PontoDeAtendimentoDAO implements  PontoDeAtendimentoRepository{
     }
 
     @Override
-    public void remover(PontoDeAtendimento pontoDeAtendimento) {
-        this.entityManager.remove(entityManager.getReference(PontoDeAtendimento.class, pontoDeAtendimento.getId()));
+    public void remover(Integer id) {
+        this.entityManager.remove(entityManager.getReference(PontoDeAtendimento.class, id));
     }
 
     @Override

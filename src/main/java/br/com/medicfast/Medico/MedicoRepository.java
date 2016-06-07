@@ -7,7 +7,7 @@ public interface MedicoRepository {
 
     Collection<Medico> buscarTodos();
 
-    void remover(Medico medicoParaRemover);
+    void remover(Integer id);
 
     Medico buscarPor(Integer id);
 

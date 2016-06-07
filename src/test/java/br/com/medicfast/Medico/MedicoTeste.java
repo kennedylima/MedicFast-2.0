@@ -94,7 +94,7 @@ public class MedicoTeste extends AbstractTransactionalJUnit4SpringContextTests {
         salvarMedico();
 
         Collection<Medico> medicoCollection = medicoRepository.buscarTodos();
-        medicoRepository.remover(medico);
+        medicoRepository.remover(medico.getId());
         medicoCollection = medicoRepository.buscarTodos();
 
         assertThat(medicoCollection, not(hasItem(medico)));

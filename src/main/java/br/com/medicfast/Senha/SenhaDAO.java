@@ -31,5 +31,10 @@ public class SenhaDAO implements SenhaRepository{
     public Collection<Senha> buscarTodas() {
         return entityManager.createQuery("from Senha s").getResultList();
     }
+
+    @Override
+    public Senha buscarPor(Integer id) {
+        return entityManager.find(Senha.class,id);
+    }
 }
 

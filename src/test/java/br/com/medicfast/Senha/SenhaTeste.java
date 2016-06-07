@@ -4,17 +4,16 @@ import br.com.medicfast.Ocorrencia.Ocorrencia;
 import br.com.medicfast.PontoDeAtendimento.PontoDeAtendimento;
 import br.com.medicfast.PontoDeAtendimento.PontoDeAtendimentoRepository;
 import br.com.medicfast.Utils.Horario;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
-import javax.persistence.OneToOne;
 import java.sql.Time;
 import java.util.Collection;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @ContextConfiguration(locations = "classpath:springbeanstest.xml")
 public class SenhaTeste extends AbstractTransactionalJUnit4SpringContextTests {
@@ -27,9 +26,11 @@ public class SenhaTeste extends AbstractTransactionalJUnit4SpringContextTests {
     private Senha senha;
     private PontoDeAtendimento pontoDeAtendimento;
 
+
     @Test
     public void deve_salvar_uma_senha(){
         salvarUmaSenha();
+        System.out.println(senha.getNumero());
         assertNotNull(senha.getNumero());
     }
 
@@ -44,6 +45,18 @@ public class SenhaTeste extends AbstractTransactionalJUnit4SpringContextTests {
         senhas = senhaRepository.buscarTodas();
 
         assertTrue(senhas.size() == quantidadeEsperada);
+
+    }
+
+    @Test
+    public void deve_buscar_uma_senha_pelo_id(){
+        Senha senhaRetornada;
+        salvarUmaSenha();
+
+        senhaRetornada = senhaRepository.buscarPor(senha.getId());
+
+        assertEquals(senha,senhaRetornada);
+
     }
 
     private void salvarUmaSenha(){
@@ -52,9 +65,8 @@ public class SenhaTeste extends AbstractTransactionalJUnit4SpringContextTests {
         Time horarioPrevistoParaOAtendimento = Horario.deAtendimentoPara(Ocorrencia.SUSPEITA_DE_DENGUE);
         senha = new Senha(pontoDeAtendimento,Ocorrencia.SUSPEITA_DE_DENGUE,horarioPrevistoParaOAtendimento);
 
-
         senhaRepository.salvar(senha);
-        senha.setNumero(senha.getId());
+
     }
 
     private void salvarUmPontoDeAtedimento(){

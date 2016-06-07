@@ -4,5 +4,8 @@ import java.util.Collection;
 
 public interface SenhaRepository {
     void salvar(Senha senha);
+
     Collection<Senha> buscarTodas();
+
+    Senha buscarPor(Integer id);
 }

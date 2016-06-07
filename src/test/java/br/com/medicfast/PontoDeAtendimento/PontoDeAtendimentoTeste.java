@@ -98,7 +98,7 @@ public class PontoDeAtendimentoTeste extends AbstractTransactionalJUnit4SpringCo
         pontoDeAtendimento.adicionarMedicos(medicos);
 
         pontoDeAtendimentoRepository.salvar(pontoDeAtendimento);
-        pontoDeAtendimentoRepository.remover(pontoDeAtendimento);
+        pontoDeAtendimentoRepository.remover(pontoDeAtendimento.getId());
         pontoDeAtendimento = pontoDeAtendimentoRepository.buscarPor(pontoDeAtendimento.getId());
 
         assertNull(pontoDeAtendimento);
@@ -109,7 +109,7 @@ public class PontoDeAtendimentoTeste extends AbstractTransactionalJUnit4SpringCo
         salvarUmPontoDeAtendimento();
         salvarUmPontoDeAtendimento();
 
-        pontoDeAtendimentoRepository.remover(pontoDeAtendimento);
+        pontoDeAtendimentoRepository.remover(pontoDeAtendimento.getId());
         Collection<PontoDeAtendimento> pontoDeAtendimentoCollection = (List<PontoDeAtendimento>) pontoDeAtendimentoRepository.buscarTodos();
 
         assertThat(pontoDeAtendimentoCollection, not(hasItem(pontoDeAtendimento)));
